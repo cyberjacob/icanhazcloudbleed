@@ -24,36 +24,67 @@
       <h1 class="title">I Can Haz Cloudbleed?</h1>
     </header>
     <div id="container">
-      <p class="tagline">{{ site.description | default: site.github.project_tagline }}</p>
+      <p class="tagline">Check your favorate sites for the CloudBleed vulnerability:</p>
       <div id="main" role="main">
         <div class="download-bar">
         <div class="inner">
-          {% if site.show_downloads %}
-          <a href="{{ site.github.tar_url }}" class="download-button tar"><span>Download</span></a>
-          <a href="{{ site.github.zip_url }}" class="download-button zip"><span>Download</span></a>
-          {% endif %}
-          <a href="{{ site.github.repository_url }}" class="code">View {{ site.title | default: site.github.repository_name }} on GitHub</a>
+          <input class="form-control input-lg" name="url" placeholder="www.website.com" style="width: 100%;margin: 20px 0px;height: 120px;font-size: 80px;" value="" type="text">
         </div>
         <span class="blc"></span><span class="trc"></span>
         </div>
-        <article class="markdown-body">
-          {{ content }}
+        <article class="markdown-body" style="display: none;" id="spinner">
+          <svg style="text-align: center;" width='120px' height='120px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-default">
+            <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(0 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(30 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.08333333333333333s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(60 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.16666666666666666s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(90 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.25s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(120 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.3333333333333333s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(150 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.4166666666666667s' repeatCount='indefinite'/>
+              </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(180 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(210 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.5833333333333334s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(240 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.6666666666666666s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(270 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.75s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(300 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.8333333333333334s' repeatCount='indefinite'/>
+            </rect>
+            <rect  x='46.5' y='40' width='7' height='20' rx='5' ry='5' fill='#cec9c9' transform='rotate(330 50 50) translate(0 -30)'>
+              <animate attributeName='opacity' from='1' to='0' dur='1s' begin='0.9166666666666666s' repeatCount='indefinite'/>
+            </rect>
+          </svg>
+        </article>
+        <article class="markdown-body" style="display: none;" id="status">
+          If the site was using Cloudflare, private data on it might have been leaked since 2016-09-22! Learn more about CloudBleed on the <a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=1139">Google issue tracker</a> or the <a href="https://blog.cloudflare.com/incident-report-on-memory-leak-caused-by-cloudflare-parser-bug/">Cloudflare blog</a>.
         </article>
       </div>
     </div>
     <footer>
       <div class="owner">
-      {% if site.github.is_project_page %}
-      <p><a href="{{ site.github.owner_url }}" class="avatar"><img src="{{ site.github.owner_gravatar_url }}" width="48" height="48"></a> <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a> maintains <a href="{{ site.github.repository_url }}">{{ site.title | default: site.github.repository_name }}</a></p>
-      {% endif %}
-
-       {% if site.github.is_user_page %}
-      <p><a href="{{ site.github.owner_url }}" class="avatar"><img src="{{ site.github.owner_gravatar_url }}" width="48" height="48"></a>View <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a> on <a href="https://www.github.com">GitHub</a></p>
-      {% endif %}
-
+      If the site is using Cloudflare, it may have been vulnerable to the CloudBleed bug!<br/>
+      Learn more about CloudBleed on the <a href="https://bugs.chromium.org/p/project-zero/issues/detail?id=1139">Google issue tracker</a> or the <a href="https://blog.cloudflare.com/incident-report-on-memory-leak-caused-by-cloudflare-parser-bug/">Cloudflare blog</a>.
       </div>
       <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+        <small>This page stolen from <a href="https://pages.github.com/">GitHub Pages</a><br>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
       </div>
     </footer>
   </div>
@@ -63,15 +94,46 @@
     <p class="name"></p>
   </div>
 
-  {% if site.google_analytics %}
-    <script type="text/javascript">
+  <script type="text/javascript">
+  docheck = function() {
+    $("#status").slideUp();
+    $("#spinner").slideDown();
+    $.ajax({
+      type: 'OPTIONS',
+      url: 'http://'+$("input").val(),
+      success: function(data, textStatus, request){
+        alert(request.getResponseHeader('CF-RAY'));
+        $("#status").text("ABC123")
+        $("#spinner").slideUp();
+        $("#status").slideDown();
+      },
+      error: function (request, textStatus, errorThrown) {
+        // This always failes from CORS
+        console.log(request);
+        console.log(textStatus);
+        console.log(errorThrown);
+        $("#status").text("Sorry, something went wrong while checking that site. Please try again later")
+        $("#spinner").slideUp();
+        $("#status").slideDown();
+      }
+    })
+  }
+
+  $('input').keypress(function (e) {
+    if (e.which == 13) {
+      docheck();
+      return false;
+    }
+  });
+  </script>
+
+  <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
       ga('create', '{{ site.google_analytics }}', 'auto');
       ga('send', 'pageview');
-    </script>
-  {% endif %}
+  </script>
 </body>
 </html>
